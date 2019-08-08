@@ -64,7 +64,7 @@ def visualize_predictions(args, sess, net, replay_memory, env, e=0):
     # Plot values
     plt.close()
     f, axs = plt.subplots(args.state_dim, sharex=True, figsize=(15, 15))
-    plt.rc('text', usetex=True)
+    plt.rc('text', usetex=False)
     plt.rc('font', family='serif')
     for i in range(args.state_dim):
         axs[i].plot(range(1, 2*args.seq_length), x[0, :-1, i], 'k')
@@ -75,6 +75,8 @@ def visualize_predictions(args, sess, net, replay_memory, env, e=0):
         axs[i].set_ylim([np.amin(x[0, :, i])-0.2, np.amax(x[0, :, i]) + 0.2])
     plt.xlabel('Time Step')
     plt.xlim([1, 2*args.seq_length-1])
+    if not os.path.exists('vk_predictions/'):
+        os.makedirs('vk_predictions/')
     plt.savefig('vk_predictions/predictions_' + str(e) + '.png')
  
 def pendulum_cost(states, us, gamma):

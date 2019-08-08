@@ -71,9 +71,13 @@ def main():
 
     # Find state and action dimensionality from environment
     args.state_dim = env.observation_space.shape[0]
-    if args.domain_name == 'CartPole-v1': args.state_dim += 1 # taking sine and cosine of theta
-    args.action_dim = env.action_space.shape[0]
-    args.action_max = env.action_space.high[0]
+    if args.domain_name == 'CartPole-v1':
+        args.state_dim = 4 # taking sine and cosine of theta
+        args.action_dim = 1
+        args.action_max = 10
+    else:
+        args.action_dim = env.action_space.shape[0]
+        args.action_max = env.action_space.high[0]
 
     # Construct model
     net = VariationalKoopman(args)

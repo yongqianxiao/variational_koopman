@@ -2,5 +2,5 @@
 /checkpoints/*
 /__pycache__/*
 /vk_predictions/*
-/vk_predictions_inverted_pendulem/*
+/vk_predictions_inverted_pendulm/*
 
